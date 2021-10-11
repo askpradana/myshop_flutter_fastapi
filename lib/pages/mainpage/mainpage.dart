@@ -3,6 +3,8 @@ import 'package:fastapi_shop1/pages/mainpage/widgets/mainpage_widget.dart';
 import 'package:fastapi_shop1/configs/router.dart';
 import 'package:fastapi_shop1/widget/appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({Key? key}) : super(key: key);
@@ -15,6 +17,7 @@ class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       onGenerateRoute: Routes.generateRoute,
       initialRoute: homeRoute,
     );
@@ -22,12 +25,18 @@ class _LandingPageState extends State<LandingPage> {
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({
+  HomePage({
     Key? key,
   }) : super(key: key);
 
+  // final double angka = 1000000;
+
+  // final currencyFormatter = NumberFormat.currency(locale: 'ID');
+
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarBrightness: Brightness.light));
     return Scaffold(
       body: SafeArea(
           child: Container(
@@ -40,6 +49,7 @@ class HomePage extends StatelessWidget {
             buildMiripAppBar(context),
             buildTitlePage(),
             ItemList(),
+            // Text(currencyFormatter.format(angka)),
           ],
         ),
       )),

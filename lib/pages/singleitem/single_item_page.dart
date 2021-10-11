@@ -4,6 +4,7 @@ import 'package:fastapi_shop1/pages/singleitem/widgets/singleitem_widgets.dart';
 import 'package:fastapi_shop1/widget/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 class HalamanLiatItem extends StatefulWidget {
   const HalamanLiatItem({
@@ -47,6 +48,8 @@ class _HalamanLiatItemState extends State<HalamanLiatItem> {
       isFavorit = trigger;
     });
   }
+
+  final convertCurrency = NumberFormat.currency(locale: 'ID');
 
   List<DropdownMenuItem<String>> get pilihanWarna {
     List<DropdownMenuItem<String>> menuItems = [
@@ -189,7 +192,8 @@ class _HalamanLiatItemState extends State<HalamanLiatItem> {
             alignment: Alignment.centerLeft,
             padding: EdgeInsets.symmetric(vertical: 10),
             child: Text(
-              'Rp.${widget.data[1]}',
+              // 'Rp.${widget.data[1]}',
+              '${convertCurrency.format(widget.data[1])}',
               style: TextStyle(
                 color: Colors.red,
                 fontSize: 16,

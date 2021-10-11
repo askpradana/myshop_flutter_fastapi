@@ -1,4 +1,8 @@
+import 'package:fastapi_shop1/widget/currency.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+final convertCurrency = NumberFormat.currency(locale: 'ID');
 
 cardPropeties(int index, propItem) {
   return Expanded(
@@ -20,7 +24,8 @@ cardPropeties(int index, propItem) {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Rp.${propItem[index].harga}'),
+              // Text('Rp.${propItem[index].harga}'),
+              Text(convertCurrency.format(propItem[index].harga)),
               IconButton(
                 onPressed: () {},
                 icon: Icon(Icons.favorite_border),
