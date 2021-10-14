@@ -25,7 +25,12 @@ cardPropeties(int index, propItem) {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               // Text('Rp.${propItem[index].harga}'),
-              Text(convertCurrency.format(propItem[index].harga)),
+              Text(
+                convertCurrency.format(propItem[index].harga),
+                style: TextStyle(
+                  color: Color(0xfffe7f2d),
+                ),
+              ),
               IconButton(
                 onPressed: () {},
                 icon: Icon(Icons.favorite_border),

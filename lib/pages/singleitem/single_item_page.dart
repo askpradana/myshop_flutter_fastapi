@@ -1,5 +1,6 @@
 import 'package:fastapi_shop1/controller/api.dart';
 import 'package:fastapi_shop1/model/model.dart';
+import 'package:fastapi_shop1/pages/singleitem/comment_section.dart';
 import 'package:fastapi_shop1/pages/singleitem/widgets/singleitem_widgets.dart';
 import 'package:fastapi_shop1/widget/appbar.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,7 @@ class _HalamanLiatItemState extends State<HalamanLiatItem> {
   late bool isFavorit;
   String dropdownValSize = 'S';
   String dropdownValCol = 'Merah';
+  bool readMore = false;
 
   @override
   void initState() {
@@ -95,6 +97,20 @@ class _HalamanLiatItemState extends State<HalamanLiatItem> {
     return menuItems;
   }
 
+  handleReadMoreButton() {
+    setState(() {
+      readMore = !readMore;
+    });
+  }
+
+  descriptionDeciderToReadMoreOrNot() {
+    if (readMore == false) {
+      return buildDeskripsiItem();
+    } else if (readMore == true) {
+      return buildDeskripsiItemMore();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -111,8 +127,10 @@ class _HalamanLiatItemState extends State<HalamanLiatItem> {
                 AppBarWithFunction(),
                 buildGambarItem(),
                 buildTitleHargaPenilaianFavoriteItem(),
-                buildDeskripsiItem(),
+                descriptionDeciderToReadMoreOrNot(),
+                buildReadMoreDescription(),
                 buildPilihanUkuranWarnaItem(),
+                ViewCommentButton(),
                 KomenList(),
               ],
             ),
@@ -122,9 +140,17 @@ class _HalamanLiatItemState extends State<HalamanLiatItem> {
     );
   }
 
+  buildReadMoreDescription() {
+    return TextButton(
+      onPressed: () => handleReadMoreButton(),
+      child: Text(
+          readMore ? 'Read Less'.toUpperCase() : 'Read More'.toUpperCase()),
+    );
+  }
+
   buildPilihanUkuranWarnaItem() {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 25),
+      padding: EdgeInsets.symmetric(vertical: 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -172,6 +198,15 @@ class _HalamanLiatItemState extends State<HalamanLiatItem> {
     );
   }
 
+  buildDeskripsiItemMore() {
+    return Container(
+      child: Text(
+        widget.data[3],
+        style: TextStyle(fontSize: 16),
+      ),
+    );
+  }
+
   buildTitleHargaPenilaianFavoriteItem() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 25),
@@ -195,7 +230,7 @@ class _HalamanLiatItemState extends State<HalamanLiatItem> {
               // 'Rp.${widget.data[1]}',
               '${convertCurrency.format(widget.data[1])}',
               style: TextStyle(
-                color: Colors.red,
+                color: Color(0xfffe7f2d),
                 fontSize: 16,
               ),
             ),
@@ -233,6 +268,34 @@ class _HalamanLiatItemState extends State<HalamanLiatItem> {
   }
 
   Image buildGambarItem() => Image.network(widget.data[2]);
+}
+
+class ViewCommentButton extends StatelessWidget {
+  const ViewCommentButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.topRight,
+      padding: EdgeInsets.only(bottom: 5),
+      child: TextButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => CommenctSection()),
+          );
+        },
+        child: Text(
+          "View All Comment".toUpperCase(),
+          style: TextStyle(
+            color: Color(0xfffe7f2d),
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 class KomenList extends StatefulWidget {

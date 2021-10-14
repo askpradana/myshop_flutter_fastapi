@@ -53,3 +53,24 @@ class AppBarWithFunction extends StatelessWidget {
     );
   }
 }
+
+class AppBarBack extends StatelessWidget {
+  const AppBarBack({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 15),
+      child: Container(
+        alignment: Alignment.centerLeft,
+        child: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.arrow_back,
+            )),
+      ),
+    );
+  }
+}

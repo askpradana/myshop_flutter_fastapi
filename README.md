@@ -8,10 +8,20 @@ Simple mock up ( currently ) without logic, just simple
 
 ---
 
-Flutter 2.2.3
-Dart 2.13.4
-Uvicorn 0.15.0
-Fastapi 0.1.0
+<ul>
+    <li>
+        Flutter 2.2.3
+    </li>
+    <li>
+         Dart 2.13.4
+    </li>
+    <li>
+         Uvicorn 0.15.0
+    </li>
+    <li>
+        Fastapi 0.1.0
+    </li>
+</ul>
 
 ### Setup
 
@@ -36,14 +46,28 @@ To run this project locally, do :
 
 ---
 
+###### To do
+
 1. Seperate logic in cart
 2. Add more example data for scaling up
 3. add rating data in database
-4. add read more section on description
-5. is like button per data
-6. read more comment
-7. tema warna aplikasi
-8. shopping cart page
+4. is like button per data
+5. tema warna aplikasi
+6. clean code
+7. sliver appbar
+8. settings menu
+9. adaptive screen size
+10. layoutbuilder every screen
+
+##### on going
+
+1. shopping cart page with listviewbuilder
+
+###### v1.1 update
+
+1. add read more section on description
+2. add fastAPI to source
+3. read more comment
 
 ##### source
 
