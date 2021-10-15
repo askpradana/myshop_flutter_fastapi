@@ -21,6 +21,7 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
             vertical: 5,
             horizontal: 10,
           ),
+          //TODO => ubah ke listview
           child: Column(
             children: [
               buildAppBarShoppingCart(context),
@@ -46,6 +47,11 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
   }
 }
 
+enum JumlahBarang {
+  increment,
+  decrement,
+}
+
 class SingleItemInCart extends StatefulWidget {
   const SingleItemInCart({
     Key? key,
@@ -67,16 +73,14 @@ class _SingleItemInCartState extends State<SingleItemInCart> {
     jumlahBarang = 0;
   }
 
-  tambahBarang() {
-    setState(() {
-      jumlahBarang = jumlahBarang + 1;
-    });
-  }
-
-  kurangBarang() {
-    setState(() {
-      jumlahBarang = jumlahBarang - 1;
-    });
+  handleJumlahBarang(fungsi) {
+    if (fungsi == JumlahBarang.increment) {
+      setState(() {
+        jumlahBarang++;
+      });
+    } else if (fungsi == JumlahBarang.decrement) {
+      jumlahBarang--;
+    }
   }
 
   @override
@@ -121,16 +125,14 @@ class _SingleItemInCartState extends State<SingleItemInCart> {
                 Row(
                   children: [
                     IconButton(
-                      onPressed: () {
-                        kurangBarang();
-                      },
+                      onPressed: () =>
+                          handleJumlahBarang(JumlahBarang.decrement),
                       icon: Icon(Icons.remove),
                     ),
                     Text(jumlahBarang.toString()),
                     IconButton(
-                      onPressed: () {
-                        tambahBarang();
-                      },
+                      onPressed: () =>
+                          handleJumlahBarang(JumlahBarang.increment),
                       icon: Icon(Icons.add),
                     ),
                   ],

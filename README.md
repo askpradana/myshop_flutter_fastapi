@@ -62,12 +62,14 @@ To run this project locally, do :
 ##### on going
 
 1. shopping cart page with listviewbuilder
+2. bersih-bersih tahap 2
 
 ###### v1.1 update
 
 1. add read more section on description
 2. add fastAPI to source
 3. read more comment
+4. bersih-bersih
 
 ##### source
 
