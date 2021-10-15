@@ -52,19 +52,23 @@ To run this project locally, do :
 2. Add more example data for scaling up
 3. add rating data in database
 4. is like button per data
-5. tema warna aplikasi
-6. clean code
-7. sliver appbar
-8. settings menu
-9. adaptive screen size
-10. layoutbuilder every screen
+5. clean code
+6. adaptive screen size
+7. layoutbuilder every screen
 
-##### on going
+###### v1.2
 
-1. shopping cart page with listviewbuilder
-2. bersih-bersih tahap 2
+###### on going
 
-###### v1.1 update
+1. settings page
+2. tema warna aplikasi
+3. bersih-bersih tahap 2
+
+###### done
+
+4. shopping cart page with listviewbuilder
+
+###### v1.1
 
 1. add read more section on description
 2. add fastAPI to source
