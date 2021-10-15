@@ -9,6 +9,14 @@ class CommenctSection extends StatefulWidget {
 }
 
 class _CommenctSectionState extends State<CommenctSection> {
+  bool readMore = false;
+
+  expandComment() {
+    setState(() {
+      readMore = !readMore;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +35,9 @@ class _CommenctSectionState extends State<CommenctSection> {
                 ),
               );
             }
-            return buildCardCommenct();
+            return BuildCardComment(
+              isExpanded: readMore,
+            );
           },
           separatorBuilder: (BuildContext context, int index) {
             if (index > 1) {
@@ -49,8 +59,23 @@ class _CommenctSectionState extends State<CommenctSection> {
   buildHeaderComment() {
     return AppBarBack();
   }
+}
 
-  buildCardCommenct() {
+class BuildCardComment extends StatefulWidget {
+  BuildCardComment({
+    Key? key,
+    required this.isExpanded,
+  }) : super(key: key);
+
+  bool isExpanded;
+
+  @override
+  State<BuildCardComment> createState() => _BuildCardCommentState();
+}
+
+class _BuildCardCommentState extends State<BuildCardComment> {
+  @override
+  Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth > 800) {
@@ -64,30 +89,40 @@ class _CommenctSectionState extends State<CommenctSection> {
                 vertical: 3,
                 horizontal: 10,
               ),
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    backgroundColor: Colors.red,
-                  ),
-                  Container(
-                    width: constraints.maxWidth - 80,
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Nama"),
-                        Divider(
-                          color: Colors.transparent,
-                        ),
-                        Text(
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    widget.isExpanded = !widget.isExpanded;
+                  });
+                },
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: Colors.red,
                     ),
-                  )
-                ],
+                    Container(
+                      width: constraints.maxWidth - 80,
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Nama"),
+                          Divider(
+                            color: Colors.transparent,
+                          ),
+                          Text(
+                            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                            maxLines: widget.isExpanded ? null : 3,
+                            overflow: widget.isExpanded
+                                ? null
+                                : TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           );

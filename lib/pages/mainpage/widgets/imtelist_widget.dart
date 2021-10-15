@@ -1,4 +1,3 @@
-import 'package:fastapi_shop1/widget/currency.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

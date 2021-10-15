@@ -4,7 +4,6 @@ import 'package:fastapi_shop1/configs/router.dart';
 import 'package:fastapi_shop1/widget/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({Key? key}) : super(key: key);
