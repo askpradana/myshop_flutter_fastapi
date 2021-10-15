@@ -5,53 +5,53 @@ import 'package:fastapi_shop1/widget/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class LandingPage extends StatefulWidget {
-  const LandingPage({Key? key}) : super(key: key);
+// class LandingPage extends StatefulWidget {
+//   const LandingPage({Key? key}) : super(key: key);
 
-  @override
-  _LandingPageState createState() => _LandingPageState();
-}
+//   @override
+//   _LandingPageState createState() => _LandingPageState();
+// }
 
-class _LandingPageState extends State<LandingPage> {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      onGenerateRoute: Routes.generateRoute,
-      initialRoute: homeRoute,
-    );
-  }
-}
+// class _LandingPageState extends State<LandingPage> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       onGenerateRoute: Routes.generateRoute,
+//       initialRoute: homeRoute,
+//     );
+//   }
+// }
 
-class HomePage extends StatelessWidget {
-  HomePage({
-    Key? key,
-  }) : super(key: key);
+// class HomePage extends StatelessWidget {
+//   HomePage({
+//     Key? key,
+//   }) : super(key: key);
 
-  // final double angka = 1000000;
+//   // final double angka = 1000000;
 
-  // final currencyFormatter = NumberFormat.currency(locale: 'ID');
+//   // final currencyFormatter = NumberFormat.currency(locale: 'ID');
 
-  @override
-  Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarBrightness: Brightness.light));
-    return Scaffold(
-      body: SafeArea(
-          child: Container(
-        padding: EdgeInsets.symmetric(
-          vertical: 5,
-          horizontal: 10,
-        ),
-        child: Column(
-          children: [
-            buildMiripAppBar(context),
-            buildTitlePage(),
-            ItemList(),
-            // Text(currencyFormatter.format(angka)),
-          ],
-        ),
-      )),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     SystemChrome.setSystemUIOverlayStyle(
+//         SystemUiOverlayStyle(statusBarBrightness: Brightness.light));
+//     return Scaffold(
+//       body: SafeArea(
+//           child: Container(
+//         padding: EdgeInsets.symmetric(
+//           vertical: 5,
+//           horizontal: 10,
+//         ),
+//         child: Column(
+//           children: [
+//             buildMiripAppBar(context),
+//             buildTitlePage(),
+//             ItemList(),
+//             // Text(currencyFormatter.format(angka)),
+//           ],
+//         ),
+//       )),
+//     );
+//   }
+// }

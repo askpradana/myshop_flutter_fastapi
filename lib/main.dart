@@ -1,4 +1,4 @@
-import 'package:fastapi_shop1/pages/mainpage/mainpage.dart';
+import 'package:fastapi_shop1/landingpage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
