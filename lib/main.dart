@@ -1,4 +1,4 @@
-import 'package:fastapi_shop1/landingpage.dart';
+import 'package:fastapi_shop1/pages/landingpage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,8 +10,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: LandingPage(),
-    );
+    return LandingPage();
   }
 }
