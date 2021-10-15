@@ -1,6 +1,6 @@
-import 'package:fastapi_shop1/pages/mainpage/mainpage.dart';
-import 'package:fastapi_shop1/pages/shoppingcart/shopping_cart.dart';
-import 'package:fastapi_shop1/pages/singleitem/single_item_page.dart';
+import 'package:fastapi_shop1/homepage.dart';
+import 'package:fastapi_shop1/itempage.dart';
+import 'package:fastapi_shop1/wishlistpage.dart';
 import 'package:flutter/material.dart';
 
 class Routes {
