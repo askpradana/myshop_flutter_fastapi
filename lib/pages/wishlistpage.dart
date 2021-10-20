@@ -15,6 +15,8 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
+      backgroundColor: Theme.of(context).backgroundColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -103,6 +105,7 @@ class _SingleItemState extends State<SingleItem> {
     totalWidth = size.width;
     totalheight = size.height;
     return Card(
+      color: Theme.of(context).colorScheme.surface,
       elevation: 1,
       child: Row(
         children: [
@@ -127,7 +130,10 @@ class _SingleItemState extends State<SingleItem> {
                     overflow: TextOverflow.ellipsis,
                   ),
                   // TODO => Ubah pake currency lagi
-                  Text(widget.prop[widget.index].harga.toString()),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 3),
+                    child: Text(widget.prop[widget.index].harga.toString()),
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

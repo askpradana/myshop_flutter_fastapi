@@ -1,4 +1,5 @@
 import 'package:fastapi_shop1/configs/router.dart';
+import 'package:fastapi_shop1/themes/color.dart';
 import 'package:flutter/material.dart';
 
 class LandingPage extends StatefulWidget {
@@ -15,6 +16,8 @@ class _LandingPageState extends State<LandingPage> {
       debugShowCheckedModeBanner: false,
       onGenerateRoute: Routes.generateRoute,
       initialRoute: homeRoute,
+      theme: TemaAplikasi.temaCerah,
+      darkTheme: TemaAplikasi.temaGelap,
     );
   }
 }

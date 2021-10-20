@@ -1,3 +1,4 @@
+import 'package:fastapi_shop1/configs/router.dart';
 import 'package:fastapi_shop1/controller/api.dart';
 import 'package:fastapi_shop1/model/model.dart';
 import 'package:fastapi_shop1/pages/commentpage.dart';
@@ -114,7 +115,9 @@ class _HalamanLiatItemState extends State<HalamanLiatItem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: bikinBottomAppBar(),
+      appBar: AppBar(),
+      backgroundColor: Theme.of(context).backgroundColor,
+      bottomNavigationBar: bikinBottomAppBar(context),
       body: SafeArea(
         child: Container(
           padding: EdgeInsets.symmetric(
@@ -215,10 +218,7 @@ class _HalamanLiatItemState extends State<HalamanLiatItem> {
           Container(
             child: Text(
               widget.data[0],
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 22,
-              ),
+              style: Theme.of(context).textTheme.bodyText1,
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
             ),
@@ -229,10 +229,7 @@ class _HalamanLiatItemState extends State<HalamanLiatItem> {
             child: Text(
               // 'Rp.${widget.data[1]}',
               '${convertCurrency.format(widget.data[1])}',
-              style: TextStyle(
-                color: Color(0xfffe7f2d),
-                fontSize: 16,
-              ),
+              style: Theme.of(context).textTheme.headline3,
             ),
           ),
           Row(
@@ -282,17 +279,11 @@ class ViewCommentButton extends StatelessWidget {
       padding: EdgeInsets.only(bottom: 5),
       child: TextButton(
         onPressed: () {
-          Navigator.push(
-            context,
-            //TODO: FIXME => Pindahin ke router
-            MaterialPageRoute(builder: (_) => CommenctSection()),
-          );
+          Navigator.pushNamed(context, allCommentRoute);
         },
         child: Text(
           "View All Comment".toUpperCase(),
-          style: TextStyle(
-            color: Color(0xfffe7f2d),
-          ),
+          style: Theme.of(context).textTheme.headline3,
         ),
       ),
     );
@@ -326,12 +317,20 @@ class _KomenListState extends State<KomenList> {
   }
 }
 
-class KomenSatuan extends StatelessWidget {
+class KomenSatuan extends StatefulWidget {
   const KomenSatuan({
     Key? key,
     required this.propKomen,
   }) : super(key: key);
   final List<KomenModel> propKomen;
+
+  @override
+  State<KomenSatuan> createState() => _KomenSatuanState();
+}
+
+class _KomenSatuanState extends State<KomenSatuan> {
+  //TODO: Pindah ke parent widget biar bisa satuan
+  bool _expandReadMore = false;
 
   @override
   Widget build(BuildContext context) {
@@ -343,37 +342,47 @@ class KomenSatuan extends StatelessWidget {
             child: ListView.builder(
               itemCount: 3,
               itemBuilder: (BuildContext context, int index) {
-                return Card(
-                  child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CircleAvatar(
-                          backgroundImage: NetworkImage(
-                              propKomen[index].profilepict.toString()),
-                          radius: 20,
-                        ),
-                        Expanded(
-                          child: Container(
-                            padding: EdgeInsets.only(left: 10),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 10),
-                                  child: Text(propKomen[index].nama!),
-                                ),
-                                Text(
-                                  propKomen[index].comment!,
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 3,
-                                ),
-                              ],
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _expandReadMore = !_expandReadMore;
+                    });
+                  },
+                  child: Card(
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CircleAvatar(
+                            backgroundImage: NetworkImage(
+                                widget.propKomen[index].profilepict.toString()),
+                            radius: 20,
+                          ),
+                          Expanded(
+                            child: Container(
+                              padding: EdgeInsets.only(left: 10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 10),
+                                    child: Text(widget.propKomen[index].nama!),
+                                  ),
+                                  Text(
+                                    widget.propKomen[index].comment!,
+                                    overflow: _expandReadMore
+                                        ? null
+                                        : TextOverflow.ellipsis,
+                                    maxLines: _expandReadMore ? null : 3,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 );

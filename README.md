@@ -50,23 +50,33 @@ To run this project locally, do :
 
 1. Seperate logic in cart
 2. Add more example data for scaling up
-3. add rating data in database
-4. is like button per data
-5. clean code
-6. adaptive screen size
-7. layoutbuilder every screen
+3. is like button per data
+4. clean code
+5. adaptive screen size
+6. layoutbuilder every screen => termasuk rotation
+7. Shopping cart selected item only
+8. ios android beda widget
+9. shared_preferences for theme (dark/light theme)
+10. pull to refresh
+11. ubah semua jadi cek koneksi dulu sebelum display apa2
 
-###### v1.2
+##### v1.3(21 Oct - 28 Oct 2021)
 
-###### on going
+###### Ongoing
 
-1. settings page
-2. tema warna aplikasi
-3. bersih-bersih tahap 2
+1.  appbar widget di gabung semua
+2.  add rating data in database
+3.  bersih-bersih tahap 2
+4.  edit dark mode light mode in app
 
-###### done
+###### Done
 
-4. shopping cart page with listviewbuilder
+###### v1.2 (20 Oct 2021)
+
+1.  Ubah navigasi ke configs semua
+1.  shopping cart page with listviewbuilder
+1.  settings page
+1.  tema warna aplikasi
 
 ###### v1.1
 

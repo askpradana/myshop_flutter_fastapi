@@ -7,14 +7,17 @@ buildAppBarShoppingCart(context) {
         onPressed: () {
           Navigator.pop(context);
         },
-        icon: Icon(Icons.arrow_back),
+        icon: Icon(
+          Icons.arrow_back,
+          color: Theme.of(context).primaryColor,
+        ),
       ),
       Expanded(
         child: Container(
           alignment: Alignment.topRight,
           child: Text(
             "My Cart",
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            style: Theme.of(context).textTheme.headline1,
           ),
         ),
       ),

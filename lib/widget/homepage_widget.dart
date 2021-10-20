@@ -5,16 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
-buildTitlePage() {
+buildTitlePage(context) {
   return Container(
     alignment: Alignment.topLeft,
-    padding: EdgeInsets.only(top: 20),
+    padding: EdgeInsets.symmetric(vertical: 20),
     child: Text(
       'Discover our exclusive deals',
-      style: TextStyle(
-        fontSize: 24,
-        fontWeight: FontWeight.bold,
-      ),
+      style: Theme.of(context).textTheme.headline1,
     ),
   );
 }
@@ -35,7 +32,9 @@ class _ItemListState extends State<ItemList> {
         if (snapshot.hasData) {
           return ItemSatuan(propItem: snapshot.data!);
         } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
+          return Center(
+            child: Text("No Internet Connection"),
+          );
         } else {
           return Center(
             child: CircularProgressIndicator(),
@@ -85,9 +84,11 @@ class ItemSatuan extends StatelessWidget {
 
   buildCard(BuildContext context, int index) {
     var buildCardImage = cardImage(index, propItem);
-    var buildDescription = cardPropeties(index, propItem);
+    var buildDescription = cardPropeties(index, propItem, context);
     return Card(
-      elevation: 1,
+      elevation: 2,
+      //TODO : NOTE => Pindahin ke theme data nih
+      shadowColor: Colors.white,
       margin: EdgeInsets.all(5),
       child: InkWell(
         onTap: () {
@@ -102,7 +103,6 @@ class ItemSatuan extends StatelessWidget {
         splashColor: Colors.purple,
         child: Column(
           children: [
-            // cardImage(index),
             buildCardImage,
             buildDescription,
           ],
@@ -112,35 +112,50 @@ class ItemSatuan extends StatelessWidget {
   }
 }
 
+cardImage(int index, propItem) {
+  return Expanded(
+    flex: 3,
+    child: Image.network(
+      propItem[index].gambar.toString(),
+      fit: BoxFit.cover,
+      width: double.infinity,
+    ),
+  );
+}
+
+//Untuk convert currency 10000 => IDR10.000,00
 final convertCurrency = NumberFormat.currency(locale: 'ID');
 
-cardPropeties(int index, propItem) {
+cardPropeties(int index, dynamic propItem, BuildContext context) {
   return Expanded(
-    flex: 4,
+    flex: 2,
     child: Container(
       padding: EdgeInsets.symmetric(horizontal: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+          //Nama Barang
           Text(
             propItem[index].title!,
             overflow: TextOverflow.ellipsis,
-            maxLines: 3,
+            maxLines: 2,
             style: TextStyle(
               fontSize: 12,
             ),
           ),
+
+          //Harga dan favorit
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // Text('Rp.${propItem[index].harga}'),
+              //Harga Barang
               Text(
                 convertCurrency.format(propItem[index].harga),
-                style: TextStyle(
-                  color: Color(0xfffe7f2d),
-                ),
+                style: Theme.of(context).textTheme.headline2,
               ),
+
+              //Favorit Barang
               IconButton(
                 onPressed: () {},
                 icon: Icon(Icons.favorite_border),
@@ -149,17 +164,6 @@ cardPropeties(int index, propItem) {
           ),
         ],
       ),
-    ),
-  );
-}
-
-cardImage(int index, propItem) {
-  return Expanded(
-    flex: 6,
-    child: Image.network(
-      propItem[index].gambar.toString(),
-      fit: BoxFit.cover,
-      width: double.infinity,
     ),
   );
 }

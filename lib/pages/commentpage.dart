@@ -14,43 +14,51 @@ class _CommenctSectionState extends State<CommenctSection> {
   expandComment() {
     setState(() {
       readMore = !readMore;
+      print("Work");
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
+      backgroundColor: Theme.of(context).backgroundColor,
       body: SafeArea(
-        child: ListView.separated(
-          itemCount: 10,
-          itemBuilder: (BuildContext context, int index) {
-            if (index == 0) {
-              return buildHeaderComment();
-            }
-            if (index == 1) {
-              return Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: Text(
-                  "All Comment",
-                ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 5),
+          child: ListView.separated(
+            itemCount: 10,
+            itemBuilder: (BuildContext context, int index) {
+              if (index == 0) {
+                return buildHeaderComment();
+              }
+              if (index == 1) {
+                return Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Text(
+                    "All Comment",
+                    style: Theme.of(context).textTheme.headline3,
+                  ),
+                );
+              }
+              return BuildCardComment(
+                isExpanded: readMore,
+                handleExpandComment: expandComment,
               );
-            }
-            return BuildCardComment(
-              isExpanded: readMore,
-            );
-          },
-          separatorBuilder: (BuildContext context, int index) {
-            if (index > 1) {
-              return Divider(
-                indent: 10,
-                endIndent: 10,
-                thickness: 2,
+            },
+            separatorBuilder: (BuildContext context, int index) {
+              if (index > 1) {
+                return Divider(
+                  indent: 10,
+                  endIndent: 10,
+                  thickness: 2,
+                );
+              }
+              return SizedBox(
+                height: 10,
               );
-            }
-            return SizedBox(
-              height: 10,
-            );
-          },
+            },
+          ),
         ),
       ),
     );
@@ -65,9 +73,11 @@ class BuildCardComment extends StatefulWidget {
   BuildCardComment({
     Key? key,
     required this.isExpanded,
+    required this.handleExpandComment,
   }) : super(key: key);
 
   bool isExpanded;
+  final VoidCallback handleExpandComment;
 
   @override
   State<BuildCardComment> createState() => _BuildCardCommentState();
@@ -90,11 +100,9 @@ class _BuildCardCommentState extends State<BuildCardComment> {
                 horizontal: 10,
               ),
               child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    widget.isExpanded = !widget.isExpanded;
-                  });
-                },
+                onTap: () => setState(() {
+                  widget.isExpanded = !widget.isExpanded;
+                }),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
