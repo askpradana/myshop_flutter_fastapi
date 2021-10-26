@@ -1,9 +1,8 @@
 import 'package:fastapi_shop1/configs/router.dart';
 import 'package:fastapi_shop1/controller/api.dart';
 import 'package:fastapi_shop1/model/model.dart';
-import 'package:fastapi_shop1/pages/commentpage.dart';
 import 'package:fastapi_shop1/widget/appbar.dart';
-import 'package:fastapi_shop1/widget/itempage_widget.dart';
+import 'package:fastapi_shop1/widget/iconbutton.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
@@ -127,7 +126,10 @@ class _HalamanLiatItemState extends State<HalamanLiatItem> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                AppBarWithFunction(),
+                ReusableAppBar(
+                  mainIcon: iconBackToPreviousPage(context),
+                  iconRR: iconGoToWistListPage(context),
+                ),
                 buildGambarItem(),
                 buildTitleHargaPenilaianFavoriteItem(),
                 descriptionDeciderToReadMoreOrNot(),

@@ -1,4 +1,5 @@
 import 'package:fastapi_shop1/widget/appbar.dart';
+import 'package:fastapi_shop1/widget/iconbutton.dart';
 import 'package:fastapi_shop1/widget/settingpage_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,9 @@ class SettingPage extends StatelessWidget {
           itemCount: apa.length,
           itemBuilder: (BuildContext context, int index) {
             if (index == 0) {
-              return AppBarBack();
+              return ReusableAppBar(
+                mainIcon: iconBackToPreviousPage(context),
+              );
             } else if (index == 1) {
               return DarkModeSetting();
             } else if (index == 4) {

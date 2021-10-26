@@ -1,4 +1,5 @@
 import 'package:fastapi_shop1/widget/appbar.dart';
+import 'package:fastapi_shop1/widget/iconbutton.dart';
 import 'package:flutter/material.dart';
 
 class CommenctSection extends StatefulWidget {
@@ -30,7 +31,10 @@ class _CommenctSectionState extends State<CommenctSection> {
             itemCount: 10,
             itemBuilder: (BuildContext context, int index) {
               if (index == 0) {
-                return buildHeaderComment();
+                return ReusableAppBar(
+                    mainIcon: iconBackToPreviousPage(
+                  context,
+                ));
               }
               if (index == 1) {
                 return Padding(
@@ -62,10 +66,6 @@ class _CommenctSectionState extends State<CommenctSection> {
         ),
       ),
     );
-  }
-
-  buildHeaderComment() {
-    return AppBarBack();
   }
 }
 

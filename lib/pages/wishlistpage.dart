@@ -1,6 +1,7 @@
 import 'package:fastapi_shop1/controller/api.dart';
 import 'package:fastapi_shop1/model/model.dart';
-import 'package:fastapi_shop1/widget/wishlist_widget.dart';
+import 'package:fastapi_shop1/widget/appbar.dart';
+import 'package:fastapi_shop1/widget/iconbutton.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -31,7 +32,10 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                   itemCount: snapshot.data.length,
                   itemBuilder: (BuildContext context, int index) {
                     if (index == 0) {
-                      return buildAppBarShoppingCart(context);
+                      return ReusableAppBar(
+                        mainIcon: iconBackToPreviousPage(context),
+                        iconRR: iconTextInWistListSays(context),
+                      );
                     } else {
                       // return SingleItemInCart(propCart: snapshot.data!);
                       // TODO => Kirim mediaquery besert if else kalau potrait landscaepe

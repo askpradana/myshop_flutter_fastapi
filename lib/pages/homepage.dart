@@ -1,5 +1,6 @@
 import 'package:fastapi_shop1/widget/appbar.dart';
 import 'package:fastapi_shop1/widget/homepage_widget.dart';
+import 'package:fastapi_shop1/widget/iconbutton.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -21,7 +22,12 @@ class HomePage extends StatelessWidget {
           //TODO : NOTE => Consider ubah ke sliver grid
           child: Column(
             children: [
-              buildMiripAppBar(context),
+              // buildMiripAppBar(context),
+              ReusableAppBar(
+                mainIcon: iconBackToPreviousPage(context),
+                iconRL: iconGoToSettingPage(context),
+                iconRR: iconGoToWistListPage(context),
+              ),
               buildTitlePage(context),
               ItemList(),
               // Text(currencyFormatter.format(angka)),

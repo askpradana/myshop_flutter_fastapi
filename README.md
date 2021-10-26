@@ -60,14 +60,15 @@ To run this project locally, do :
 10. pull to refresh
 11. ubah semua jadi cek koneksi dulu sebelum display apa2
 
-##### v1.3(21 Oct - 28 Oct 2021)
+##### v1.3(pending)
 
 ###### Ongoing
 
-1.  appbar widget di gabung semua
+1.  Base widget untuk semua
 2.  add rating data in database
 3.  bersih-bersih tahap 2
 4.  edit dark mode light mode in app
+5.  rapihin gambar readme
 
 ###### Done
 

@@ -1,6 +1,7 @@
 import 'package:fastapi_shop1/configs/router.dart';
 import 'package:fastapi_shop1/controller/api.dart';
 import 'package:fastapi_shop1/model/model.dart';
+import 'package:fastapi_shop1/widget/text.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
@@ -10,7 +11,7 @@ buildTitlePage(context) {
     alignment: Alignment.topLeft,
     padding: EdgeInsets.symmetric(vertical: 20),
     child: Text(
-      'Discover our exclusive deals',
+      Tulisan.homePageTitle,
       style: Theme.of(context).textTheme.headline1,
     ),
   );
